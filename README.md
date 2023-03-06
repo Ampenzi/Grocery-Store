@@ -25,4 +25,4 @@ ONES YOU HAVE DOWNLOADED OR CLONE THE APP
             ===username
             ===password
 3. Start local server
-    python manage.py runserver 
+    `python manage.py runserver `
