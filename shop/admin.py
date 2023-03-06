@@ -3,7 +3,9 @@ from .models import(
     Item,
     Cart,
     CartItem,
-    ItemReviews
+    ItemReviews,
+    Order,
+    OrderItems
 )
 
 class ItemAdmin(admin.ModelAdmin):
@@ -29,3 +31,12 @@ class ReviewsAdmin(admin.ModelAdmin):
     list_display = ['item', 'review']
 
 admin.site.register(ItemReviews, ReviewsAdmin)
+
+class OrderItemsAdminInline(admin.TabularInline):
+    model = OrderItems
+
+class OrderAdmin(admin.ModelAdmin):
+    model= Order
+    list_display = ['cart', 'paid', 'ordered', 'bill','date']
+    inlines = [OrderItemsAdminInline,]
+admin.site.register(Order, OrderAdmin)

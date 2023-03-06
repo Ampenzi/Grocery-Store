@@ -65,19 +65,14 @@
                                     <a href="#">Links</a>
                                     <ul>
                                         <li>
+                                        {% if user.is_authenticated %}
                                         <div class="icon-home">
-                                            <a href="{% url 'home' %}">Home</a>
-                                            <div class="header-menu">
-                                                <ul>
-                                                    <li><a href="#">English</a></li>
-                                                    <li><a href="#">French</a></li>
-                                                    <li><a href="#">Spanish</a></li>
-                                                </ul>
-                                            </div><!-- End .header-menu -->
+                                            <a href="{% url 'store' %}">STORE</a>
                                         </div><!-- End .header-dropdown -->
+                                        {% endif %}
                                     </li>
                                         <li><a href="#"><i class="icon-heart-o"></i>My Wishlist <span>(3)</span></a></li>
-                                        <li><a href="#"><i class="icon-shopping-cart"></i>Cart <span>(3)</span></a></li>
+                                        <li><a href="{% url 'cart' %}"><i class="icon-shopping-cart"></i>Cart <span>{{count}}</span></a></li>
                                         {% if user.is_authenticated %}
                                         <li><a href="{% url 'logout' %}"><i class="icon-user"></i>Logout</a></li>
                                         {% else %}

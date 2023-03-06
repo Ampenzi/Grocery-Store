@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth import get_user_model
 from django.db.models.signals import post_save
-
+from uuid import uuid4
 User = get_user_model()
 
 
@@ -70,4 +70,33 @@ class ItemReviews(models.Model):
 
     def get_review(self):
         return self.review
+
+class Order(models.Model):
+    cart = models.ForeignKey(Cart, on_delete=models.SET_NULL, null=True)
+    order_id = models.CharField(max_length=100, default=uuid4)
+    bill = models.DecimalField(decimal_places=2, max_digits=10, null=True)
+    paid = models.BooleanField(default=False)
+    ordered = models.BooleanField(default=False)
+    date = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        db_table = ''
+        managed = True
+        verbose_name = 'Order'
+        ordering = ['-date']
+        verbose_name_plural = 'Orders'
+
+    def __str__(self):
+        return self.order_id
+
+class OrderItems(models.Model):
+    order = models.ForeignKey(Order, on_delete=models.SET_NULL, null=True)
+    item_name = models.CharField(max_length=30)
+    item_price = models.DecimalField(decimal_places=2, max_digits=10)
+    quantity = models.PositiveIntegerField()
+    total_cost = models.DecimalField(decimal_places=2, max_digits=10)
+
+    def __str__(self):
+        return self.item_name
+    
 

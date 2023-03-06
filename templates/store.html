@@ -1,0 +1,127 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Store{% endblock title %}
+
+{% block main %}
+
+<main class="main">
+    <div class="icon-boxes-container bg-transparent">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 col-12 icon-boxes">
+                    <div class="col-sm-6 col-lg-4">
+                        <div class="icon-box icon-box-side">
+                            <span class="icon-box-icon">
+                                <i class="icon-truck"></i>
+                            </span>
+
+                            <div class="icon-box-content">
+                                <h3 class="icon-box-title">Payment & Delivery</h3><!-- End .icon-box-title -->
+                                <p>Free shipping for orders over $50</p>
+                            </div><!-- End .icon-box-content -->
+                        </div><!-- End .icon-box -->
+                    </div><!-- End .col-sm-6 col-lg-4 -->
+                    
+                    <div class="col-sm-6 col-lg-4">
+                        <div class="icon-box icon-box-side">
+                            <span class="icon-box-icon">
+                                <i class="icon-rotate-left"></i>
+                            </span>
+
+                            <div class="icon-box-content">
+                                <h3 class="icon-box-title">Return & Refund</h3><!-- End .icon-box-title -->
+                                <p>Free 100% money back guarantee</p>
+                            </div><!-- End .icon-box-content -->
+                        </div><!-- End .icon-box -->
+                    </div><!-- End .col-sm-6 col-lg-4 -->
+
+                    <div class="col-sm-6 col-lg-4">
+                        <div class="icon-box icon-box-side">
+                            <span class="icon-box-icon">
+                                <i class="icon-headphones"></i>
+                            </span>
+
+                            <div class="icon-box-content">
+                                <h3 class="icon-box-title">Quality Support</h3><!-- End .icon-box-title -->
+                                <p>Alway online feedback 24/7</p>
+                            </div><!-- End .icon-box-content -->
+                        </div><!-- End .icon-box -->
+                    </div><!-- End .col-sm-6 col-lg-4 -->
+                </div>
+            </div><!-- End .row -->
+        </div><!-- End .container -->
+    </div><!-- End .icon-boxes-container -->
+
+    <div class="mb-6"></div><!-- End .mb-6 -->
+
+    <div class="container-fluid">
+        <div class="heading heading-center mb-3">
+            <h2 class="title">FRESH GROCERIES</h2><!-- End .title -->
+        </div><!-- End .heading -->
+
+        <div class="tab-content">
+            <div class="tab-pane p-0 fade show active">
+                <div class="products">
+                    <div class="row justify-content-center">
+                        {% for obj in page_obj.object_list %}
+                        <div class="col-6 col-md-4 col-lg-3 col-xl-5col">
+                            <div class="product product-7 text-center">
+                                <figure class="product-media">
+                                    {% if obj.offer %}
+                                    <span class="product-label label-circle label-sale">OFFER</span>
+                                    {% endif %}
+                                    <a href="{% url 'product' obj.id %}">
+                                        <img src="{% static 'images/demos/demo-7/products/product-6-1.jpg' %}" alt="Product image" class="product-image">
+                                        <img src="{% static 'images/demos/demo-7/products/product-6-2.jpg' %}" alt="Product image" class="product-image-hover">
+                                    </a>
+
+                                    <div class="product-action-vertical">
+                                        <a href="#" class="btn-product-icon btn-wishlist btn-expandable"><span>add to wishlist</span></a>
+                                        <a href="#" class="btn-product-icon btn-quickview" title="Quick view"><span>Quick view</span></a>
+                                    </div><!-- End .product-action-vertical -->
+
+                                    <div class="product-action">
+                                        <a href="{% url 'addtocart' obj.id %}" class="btn-product btn-cart"><span>add to cart</span></a>
+                                    </div><!-- End .product-action -->
+                                </figure><!-- End .product-media -->
+
+                                <div class="product-body">
+                                    <h3 class="product-title"><a href="product.html">{{obj.name}}</a></h3><!-- End .product-title -->
+                                    <div class="product-price">
+                                        <span class="new-price">KES {{obj.price}}</span>
+                                        <!--<span class="old-price">$84.00</span>-->
+                                    </div><!-- End .product-price -->
+                                    <div class="ratings-container">
+                                        <div class="ratings">
+                                            <div class="ratings-val" style="width: 40%;"></div><!-- End .ratings-val -->
+                                        </div><!-- End .ratings -->
+                                        <span class="ratings-text">( 4 Reviews )</span>
+                                    </div><!-- End .rating-container -->
+                                </div><!-- End .product-body -->
+                            </div><!-- End .product -->
+                        </div><!-- End .col-sm-6 col-md-4 col-lg-3 -->
+                        {% endfor %}
+                    </div><!-- End .row -->
+                </div><!-- End .products -->
+            </div><!-- .End .tab-pane -->
+        </div><!-- End .tab-content -->
+
+        <div class="more-container text-center mt-2">
+            {% if page_obj.has_previous %}
+            <a href="?page={{page_obj.previous_page_number}}" class="btn btn-outline-dark-3 btn-more"><span>Previous</span><i class="icon-long-arrow-left"></i></a>
+            {% endif %}
+            <li class="btn btn-outline-dark-3 btn-more"><a href="#">{{page_obj.number}} / {{ page_obj.paginator.num_pages }}</a></li>
+            {% if page_obj.has_next %}
+            <a href="?page={{page_obj.next_page_number}}" class="btn btn-outline-dark-3 btn-more"><span>Next</span><i class="icon-long-arrow-right"></i></a>
+            {% endif %}
+            
+        </div><!-- End .more-container -->
+
+        <hr class="mt-0 mb-6">
+        
+        
+    </div><!-- End .container-fluid -->
+</main><!-- End .main -->
+
+{% endblock main %}

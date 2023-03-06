@@ -9,7 +9,8 @@ from accounts.views import home
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('users/', include('accounts.urls')),
-    path('', home, name='home')
+    path('store/', include('shop.urls')),
+    path('', home, name='home'),
 ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 admin.site.site_header = "Taji Admin"
