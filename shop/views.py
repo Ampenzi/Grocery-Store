@@ -166,3 +166,16 @@ def PlaceOrder(request):
     else:
         return redirect('store')
     return redirect('store')
+
+class Orders(LoginRequiredMixin,View):
+    def get(self,request):
+        user = request.user
+        cart = Cart.objects.get(user=user)
+        orders = Order.objects.filter(cart=cart)
+        count = CartItem.objects.filter(cart=cart).count()
+        context = {
+            'count':count,
+            'orders':orders, 
+        }
+        return render(request,'orders.html', context)
+

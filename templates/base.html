@@ -71,7 +71,7 @@
                                         </div><!-- End .header-dropdown -->
                                         {% endif %}
                                     </li>
-                                        <li><a href="#"><i class="icon-heart-o"></i>My Wishlist <span>(3)</span></a></li>
+                                        <li><a href="{% url 'orders' %}"><i class="icon-heart-o"></i>My Orders</a></li>
                                         <li><a href="{% url 'cart' %}"><i class="icon-shopping-cart"></i>Cart <span>{{count}}</span></a></li>
                                         {% if user.is_authenticated %}
                                         <li><a href="{% url 'logout' %}"><i class="icon-user"></i>Logout</a></li>

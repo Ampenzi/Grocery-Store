@@ -13,6 +13,6 @@ urlpatterns = [
     path('', home, name='home'),
 ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
-admin.site.site_header = "Taji Admin"
-admin.site.site_title = "Taji Admin"
-admin.site.index_title = "Taji Admin"
+admin.site.site_header = "Teevan's` Admin"
+admin.site.site_title = "Teevan's Admin"
+admin.site.index_title = "Teevan's Admin"

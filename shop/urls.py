@@ -11,11 +11,12 @@ from .views import(
     increase_quantity,
     decrease_quantity,
     PlaceOrder,
+    Orders
 )
 
 urlpatterns = [
     path('all/', store, name='store'),
-    path('deals/', hotdeals, name='hotdeals'),
+    path('orders/', Orders.as_view(), name='orders'),
     url(r'^products/(?P<pid>\d+)/product', ProductView.as_view(), name='product'),
     url(r'^checkout/', checkout, name='checkout'),
     url(r'^your/cart/', cart, name='cart'),

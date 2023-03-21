@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Cart{% endblock title %}
+
+{% block main %}
+
+<main class="main">
+    <div class="page-header text-center" style="background-image: url({% static 'images/page-header-bg.jpg' %})">
+        <div class="container">
+            <h1 class="page-title">Shopping Cart<span>Shop</span></h1>
+        </div><!-- End .container -->
+    </div><!-- End .page-header -->
+    <br/>
+
+    <div class="page-content">
+        <div class="cart">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-9">
+                        <table class="table table-cart table-mobile">
+                            <thead>
+                                <tr>
+                                    <th>Tracking No</th>
+                                    <th>Bill</th>
+                                    <th>Paid</th>
+                                    <th>Date</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                {% for order in orders %}
+                                <tr>
+                                    <td class="product-col">
+                                        {{order.order_id}}
+                                    </td>
+                                    <td class="price-col">KES {{order.bill}}</td>
+                                    {% if order.paid %}
+                                    <td class="quantity-col">
+                                            Paid                                                                      
+                                    </td>
+                                    {% else %}
+                                    <td class="quantity-col">
+                                            Pending                                                                      
+                                    </td>
+                                    {% endif %}
+                                    <td class="total-col">{{order.date}}</td>
+                                    
+                                </tr>
+                                {% empty %}
+                                <h3 class="summary-title">NO ITEMS IN CART</h3>
+                                <a href="{% url 'store' %}" class="btn btn-danger btn-block mb-3"><span>CONTINUE SHOPPING</span><i class="icon-refresh"></i></a>
+                                {% endfor %}
+                            </tbody>
+                        </table><!-- End .table table-wishlist -->
+                    </div><!-- End .col-lg-9 -->
+                </div><!-- End .row -->
+            </div><!-- End .container -->
+        </div><!-- End .cart -->
+    </div><!-- End .page-content -->
+</main><!-- End .main -->
+
+{% endblock main %}
+
+        
