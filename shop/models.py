@@ -9,6 +9,7 @@ class Item(models.Model):
     name = models.CharField(max_length=30)
     description = models.TextField()
     price = models.FloatField(default=0.0)
+    image = models.ImageField(upload_to='media/')
     offer = models.BooleanField(default=False)
     date_added = models.DateTimeField(auto_now_add=True)
 

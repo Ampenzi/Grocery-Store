@@ -72,7 +72,7 @@
                                     <span class="product-label label-circle label-sale">OFFER</span>
                                     {% endif %}
                                     <a href="{% url 'product' obj.id %}">
-                                        <img src="{% static 'images/demos/demo-7/products/product-6-1.jpg' %}" alt="Product image" class="product-image">
+                                        <img src={{obj.image.url}} alt="Product image" class="product-image">
                                         <img src="{% static 'images/demos/demo-7/products/product-6-2.jpg' %}" alt="Product image" class="product-image-hover">
                                     </a>
 
