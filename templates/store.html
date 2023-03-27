@@ -73,7 +73,7 @@
                                     {% endif %}
                                     <a href="{% url 'product' obj.id %}">
                                         <img src={{obj.image.url}} alt="Product image" class="product-image">
-                                        <img src="{% static 'images/demos/demo-7/products/product-6-2.jpg' %}" alt="Product image" class="product-image-hover">
+                                        <img src={{obj.image.url}} alt="Product image" class="product-image-hover">
                                     </a>
 
                                     <div class="product-action-vertical">

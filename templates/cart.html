@@ -35,13 +35,13 @@
                                     <td class="product-col">
                                         <div class="product">
                                             <figure class="product-media">
-                                                <a href="#">
-                                                    <img src="{% static 'images/products/table/product-1.jpg' %}" alt="Product image">
+                                                <a href="{% url 'product' item.product.id %}">
+                                                    <img src={{item.product.image.url}} alt="Product image">
                                                 </a>
                                             </figure>
 
                                             <h3 class="product-title">
-                                                <a href="#">{{item.product.name}}</a>
+                                                <a href="{% url 'product' item.product.id %}">{{item.product.name}}</a>
                                             </h3><!-- End .product-title -->
                                         </div><!-- End .product -->
                                     </td>
